@@ -13,9 +13,6 @@ app.get('/', (req, res) => {
 	res.render('index')
 })
 
-//Listen on port 3000
-// server = app.listen(3000)
-
 var http = require('http');
 
 http.createServer(function (req, res) {
