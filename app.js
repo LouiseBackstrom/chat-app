@@ -1,30 +1,38 @@
 const express = require('express')
+const http = require('http')
+const socketIO = require('socket.io')
+
 const app = express()
-const chalk = require('chalk');
+const server = http.createServer(app)
+const io = socketIO(server)
 
-//set the template engine ejs
-app.set('view engine', 'ejs')
 
-//middlewares
 app.use(express.static('public'))
 
-//routes
-app.get('/', (req, res) => {
-	res.render('index')
+io.on('connection', (socket) => {
+    console.log('Client connected: ', socket.id)
+
+    socket.on('join room', (data) => {
+        socket.join(data.room, () => {
+            // Respond to client that join was succesfull
+            io.to(socket.id).emit('join successful', 'success')
+
+            // Broadcast message to all clients in the room
+            io.to(data.room).emit(
+                'message',
+                {
+                    name: data.name,
+                    message: `Has joined the room!`
+                }
+            )
+        })
+
+        socket.on('message', (message) => {
+            // Broadcast message to all clients in the room
+            io.to(data.room).emit('message', { name: data.name, message })
+        })
+    })
 })
 
-var http = require('http');
 
-http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('Hello, World!');
-    res.end();
-}).listen(3000);
-
-const hostname = "localhost";
-const port = 3000;
-	
-app.listen(port, hostname, () => {
-  console.log(chalk.blue(`Server is running at: http://${hostname}:${port}`))
-})
-
+server.listen(3000, () => console.log('Server is running on port 3000'))
