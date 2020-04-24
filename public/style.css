@@ -76,6 +76,7 @@ aside {
   justify-content: center;
   width: 15%;
   align-items: center;
+  position: fixed;
 }
 
 h2 {
