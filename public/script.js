@@ -27,10 +27,10 @@ function onJoinRoom(event) {
 
   socket.emit('join room', { name, room })
   const h2 = document.querySelector('h2')
-  const p = document.createElement('p')
-  p.classList.add('room-text')
-  p.innerText = `${room}`
-  h2.appendChild(p)
+  const li = document.createElement('li')
+  li.classList.add('room-text')
+  li.innerText = `${room}`
+  h2.appendChild(li)
 }
 
 function onSendMessage(event) {
