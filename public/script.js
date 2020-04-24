@@ -4,6 +4,16 @@ window.addEventListener('load', () => {
   setupEventListeners()
 })
 
+const rooms = []
+const addroom = () => {
+  for (room of rooms) {
+    const h2 = document.querySelector('.openroom')
+    const li = document.createElement('li')
+    li.classList.add('openrooms')
+    li.innerText = room
+    h2.appendChild(li)
+  }
+}
 function setupEventListeners() {
   // Join submit handler
   const joinForm = document.querySelector('form.join.ui')
@@ -21,16 +31,18 @@ function setupEventListeners() {
 function onJoinRoom(event) {
   event.preventDefault()
   const [nameInput, roomInput] = document.querySelectorAll('.join.ui input')
-
   const name = nameInput.value
   const room = roomInput.value
-
   socket.emit('join room', { name, room })
-  const h2 = document.querySelector('h2')
+
+  // current room
+  const h2 = document.querySelector('.currentroom')
   const li = document.createElement('li')
   li.classList.add('room-text')
   li.innerText = `${room}`
   h2.appendChild(li)
+  rooms.push(`${room}`)
+  addroom()
 }
 
 function onSendMessage(event) {
