@@ -10,7 +10,7 @@ const io = socketIO(server)
 app.use(express.static('public'))
 
 io.on('connection', (socket) => {
-    console.log('Client connected: ', socket.id)
+    console.log('User connected: ', socket.id)
 
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
