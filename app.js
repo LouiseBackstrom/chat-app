@@ -33,6 +33,9 @@ io.on('connection', (socket) => {
             io.to(data.room).emit('message', { name: data.name, message })
         })
     })
+    socket.on('disconnect', (socket) => {
+        console.log('user disconnected', socket.id)
+    })
 })
 
 server.listen(3000, () => console.log(chalk.blue('Server is running at: http://localhost:3000')))
