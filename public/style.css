@@ -31,6 +31,16 @@ button {
   cursor: pointer;
 }
 
+.chatleave {
+  margin: 4rem 0;
+  width: 100%;
+}
+
+#leave {
+  background-color: rgb(204, 247, 250);
+  color: rgb(49, 55, 97);
+}
+
 .hidden {
   display: none !important;
 }
