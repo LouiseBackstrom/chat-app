@@ -9,13 +9,17 @@ function setupEventListeners() {
   const joinForm = document.querySelector('form.join.ui')
   joinForm.addEventListener('submit', onJoinRoom)
 
-  // Send message submit hander
+  // Send message submit handler
   const messageForm = document.querySelector('.chat.ui form')
   messageForm.addEventListener('submit', onSendMessage)
+
+  const leaveForm = document.querySelector('.chat.ui form')
+  leaveForm.addEventListener('submit', onLeaveRoom)
 
   // Socket io events
   socket.on('join successful', loadChatUI)
   socket.on('message', onMessageReceived)
+  socket.on('leave successful', leaveChatUI)
 }
 
 function onJoinRoom(event) {
@@ -33,6 +37,11 @@ function onJoinRoom(event) {
   h2.appendChild(li)
 }
 
+function onLeaveRoom(event) {
+   event.preventDefault()
+  
+}
+
 function onSendMessage(event) {
   event.preventDefault()
   const input = document.querySelector('.chat.ui form input')
@@ -44,6 +53,12 @@ function loadChatUI(data) {
   console.log(data)
   document.querySelector('.join.ui').classList.add('hidden')
   document.querySelector('.chat.ui').classList.remove('hidden')
+}
+
+function leaveChatUI(data) {
+  console.log(data)
+  document.querySelector('.chat.ui').classList.add('hidden')
+  document.querySelector('.join.ui').classList.remove('hidden')
 }
 
 function onMessageReceived({ name, message }) {

@@ -50,8 +50,8 @@ io.on('connection', (socket) => {
     socket.on('disconnect', (data) => {
         console.log('User disconnected', socket.id)
             socket.leave(data.room, () => {
-                // Respond to client that join was succesfull
-                io.to(socket.id).emit('left successful', 'success')
+                // Respond to client that leave was succesfull
+                io.to(socket.id).emit('leave successful', 'success')
                 console.log('left room: ', socket.id)
                 // Broadcast message to all clients in the room
                 io.to(data.room).emit(
@@ -61,11 +61,6 @@ io.on('connection', (socket) => {
                         message: `Has left the room!`
                     }
                 )
-            })
-    
-            socket.on('message', (message) => {
-                // Broadcast message to all clients in the room
-                io.to(data.room).emit('message', { name: data.name, message })
             })
         })
     })
