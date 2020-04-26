@@ -35,6 +35,16 @@ io.on('connection', (socket) => {
             // Broadcast message to all clients in the room
             io.to(data.room).emit('message', { name: data.name, message })
         })
+           //listen on new_message
+         socket.on('new_message', (data) => {
+        //broadcast the new message
+        io.sockets.emit('new_message', {message : data.message, name: data.name});
+    })
+            //listen on typing
+        socket.on('typing', (data) => {
+    	socket.broadcast.emit('typing', {name: data.name, message})
+    })
+
     })
 })
 

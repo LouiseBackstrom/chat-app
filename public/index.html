@@ -19,8 +19,8 @@
     </aside>
     <div class="login-container">
         <form class="join ui">
-            <input type="text" placeholder="Enter your nic">
-            <input type="text" placeholder="Enter a room">
+            <input id="name" type="text" placeholder="Enter your nic">
+            <input id="room" type="text" placeholder="Enter a room">
             <button>Join Room</button>
         </form>
 
@@ -29,8 +29,12 @@
                 <!-- Messages are put here -->
             </ul>
             <form class="chat">
-                <input type="text" placeholder="Type your message">
-                <button>Send</button>
+              <section id="chatroom">
+             <section id="feedback"></section>
+             </section>
+             <section id="feedback"></section>
+                <input id="message" type="text" placeholder="Type your message">
+                <button id="send_message">Send</button>
             </form>
         </div>
     </div>
