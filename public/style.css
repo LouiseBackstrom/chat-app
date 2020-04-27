@@ -45,12 +45,12 @@ button {
   display: none !important;
 }
 
-.chat.ui {
+.chat {
   display: flex;
   flex-direction: column;
 }
 
-.chat.ui ul {
+.chat ul {
   margin: 5rem;
   padding: 0;
 }
