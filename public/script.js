@@ -67,3 +67,32 @@ function onMessageReceived({ name, message }) {
   li.innerText = `${name}: ${message}`
   ul.append(li)
 }
+
+//buttons and inputs
+var message = $("#message")
+var name = $("#name")
+var send_message = $("#send_message")
+var chatroom = $("#chatroom")
+var feedback = $("#feedback")
+
+	//Emit message
+	send_message.click(function(){
+		socket.emit('new_message', {message : message.val()})
+	})
+
+	//Listen on new_message
+	socket.on("new_message", (data) => {
+		feedback.html('');
+		message.val('');
+		chatroom.append("<p class='message'>" + data.name + ": " + data.message + "</p>")
+	})
+
+	//Emit typing
+	message.bind("keypress", () => {
+		socket.emit('typing')
+	})
+
+	//Listen on typing
+	socket.on('typing', (data) => {
+		feedback.html("<p><i>" + data.name + " is typing a message..." + "</i></p>")
+	})
