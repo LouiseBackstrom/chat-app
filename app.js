@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
         socket.join(data.room, () => {
             // Respond to client that join was succesfull
             io.to(socket.id).emit('join successful', 'success')
-
+            console.log('joined room: ', socket.id)
             // Broadcast message to all clients in the room
             io.to(data.room).emit(
                 'message',
@@ -33,7 +33,24 @@ io.on('connection', (socket) => {
             io.to(data.room).emit('message', { name: data.name, message })
         })
     })
-})
+    
+    socket.on('disconnect', (data) => {
+        console.log('User disconnected', socket.id)
+            socket.leave(data.room, () => {
+                // Respond to client that leave was succesfull
+                io.to(socket.id).emit('leave successful', 'success')
+                console.log('left room: ', socket.id)
+                // Broadcast message to all clients in the room
+                io.to(data.room).emit(
+                    'message',
+                    {
+                        name: data.name,
+                        message: `Has left the room!`
+                    }
+                )
+            })
+        })
+    })
 
 server.listen(3000, () => console.log(chalk.blue('Server is running at: http://localhost:3000')))
 
