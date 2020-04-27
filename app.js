@@ -29,9 +29,7 @@ io.on('connection', (socket) => {
                 )
             })
         })
-    })
-      });
-
+    
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
             // Respond to client that join was succesfull
