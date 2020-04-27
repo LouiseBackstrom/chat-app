@@ -20,7 +20,7 @@ function setupEventListeners() {
 
 const rooms = ['room1', 'room2']
 const addroomToList = () => {
-  for (room of rooms) {
+  for (let room of rooms) {
     const h2 = document.querySelector('.openroom')
     const li = document.createElement('li')
     li.classList.add('openrooms')
@@ -42,6 +42,7 @@ function onJoinRoom(event) {
   li.innerText = `${room}`
   h2.appendChild(li)
   rooms.push(`${room}`)
+  localStorage.setItem('rooms', JSON.stringify(rooms))
   addroomToList()
 }
 
