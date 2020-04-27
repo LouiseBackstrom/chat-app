@@ -13,22 +13,6 @@ app.use(express.static('public'))
 //client connection
 io.on('connection', (socket) => {
     console.log('User connected: ', socket.id)
-    socket.on('disconnect', () => {
-        console.log('User disconnected: ', socket.id);
-               socket.leave(data.room, () => {
-                // Respond to client that leave was succesfull
-                io.to(socket.id).emit('leave successful', 'success')
-                console.log('left room: ', socket.id)
-                // Broadcast message to all clients in the room
-                io.to(data.room).emit(
-                    'message',
-                    {
-                        name: data.name,
-                        message: `Has left the room!`
-                    }
-                )
-            })
-        })
     
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
@@ -37,7 +21,7 @@ io.on('connection', (socket) => {
             console.log('joined room: ', socket.id)
             // Broadcast message to all clients in the room
             io.to(data.room).emit(
-                'message',
+                'new_message',
                 {
                     name: data.name,
                     message: `Has joined the room!`
@@ -45,19 +29,14 @@ io.on('connection', (socket) => {
             )
         })
 
-        socket.on('message', (message) => {
+        socket.on('new_message', (message) => {
             // Broadcast message to all clients in the room
-            io.to(data.room).emit('message', { name: data.name, message })
+            io.to(data.room).emit('new_message', { name: data.name, message })
         })
-           //listen on new_message
-         socket.on('new_message', (data) => {
-        //broadcast the new message
-        io.sockets.emit('new_message', {message : data.message, name: data.name});
-    })
             //listen on typing
         socket.on('typing', (data) => {
     	socket.broadcast.emit('typing', {name: data.name, message})
-    })
+        })
 
     })
     

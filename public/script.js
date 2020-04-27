@@ -18,7 +18,7 @@ function setupEventListeners() {
 
   // Socket io events
   socket.on('join successful', loadChatUI)
-  socket.on('message', onMessageReceived)
+  socket.on('new_message', onMessageReceived)
   socket.on('leave successful', leaveChatUI)
 }
 
@@ -45,7 +45,7 @@ function onLeaveRoom(event) {
 function onSendMessage(event) {
   event.preventDefault()
   const input = document.querySelector('.chat.ui form input')
-  socket.emit('message', input.value)
+  socket.emit('new_message', input.value)
   input.value = ''
 }
 
