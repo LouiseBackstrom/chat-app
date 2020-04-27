@@ -10,10 +10,26 @@ const io = socketIO(server)
 
 app.use(express.static('public'))
 
+//client connection
 io.on('connection', (socket) => {
     console.log('User connected: ', socket.id)
     socket.on('disconnect', () => {
         console.log('User disconnected: ', socket.id);
+               socket.leave(data.room, () => {
+                // Respond to client that leave was succesfull
+                io.to(socket.id).emit('leave successful', 'success')
+                console.log('left room: ', socket.id)
+                // Broadcast message to all clients in the room
+                io.to(data.room).emit(
+                    'message',
+                    {
+                        name: data.name,
+                        message: `Has left the room!`
+                    }
+                )
+            })
+        })
+    })
       });
 
     socket.on('join room', (data) => {
