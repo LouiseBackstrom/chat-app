@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
                 console.log('left room: ', socket.id)
                 // Broadcast message to all clients in the room
                 io.to(data.room).emit(
-                    'message',
+                    'new_message',
                     {
                         name: data.name,
                         message: `Has left the room!`
