@@ -28,6 +28,8 @@ io.on('connection', (socket) => {
                     message: `has joined the room!`
                 }
             )
+            getAllRooms()
+            //Broadcast all rooms to all clients
         })
 
     socket.on('new_message', (message) => {
@@ -42,10 +44,7 @@ io.on('connection', (socket) => {
     
     socket.on('disconnect', (data) => {
         console.log('User disconnected', socket.id)
-            socket.leave(data.room, () => {
-                // Respond to client that leave was a success
-                io.to(socket.id).emit('leave success', 'success')
-
+          
                 console.log('left room: ', socket.id)
                 // Broadcast message to all clients in the room
                 io.to(data.room).emit(
@@ -55,9 +54,18 @@ io.on('connection', (socket) => {
                         message: `has left the room!`
                     }
                 )
-            })
+            //Broadcast all rooms to all clients
         })
     })
+
+function getAllRooms() {
+    const allRooms = []
+    
+    for( const socket of io.sockets.sockets ){
+        console.log(socket)
+    }
+    return allRooms
+}
 
 server.listen(3000, () => console.log(chalk.blue('Server is running at: http://localhost:3000')))
 
