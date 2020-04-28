@@ -55,7 +55,7 @@ button {
   padding: 0;
 }
 
-li {
+.chat li {
   list-style: none;
   color: rgb(49, 55, 97);
   background-color: rgb(204, 247, 250);
@@ -81,6 +81,7 @@ aside {
   background: rgb(25, 170, 180);
   height: 100%;
   display: flex;
+  align-self: flex-start;
   flex-direction: column;
   padding: 0, 0.5rem, 0, 0;
   justify-content: center;
@@ -89,15 +90,17 @@ aside {
   position: fixed;
 }
 
-h2 {
-  font-family: arial;
-  font-weight: lighter;
-}
-
-.room-text {
+aside li {
+  list-style: none;
   font-size: 1rem;
   background: none;
   font-family: arial;
   color: white;
   cursor: pointer;
 }
+
+h2 {
+  font-family: arial;
+  font-weight: lighter;
+}
+

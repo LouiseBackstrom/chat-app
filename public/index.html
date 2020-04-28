@@ -13,34 +13,38 @@
 
 <body>
     <aside>
-        <h2>Open rooms</h2>
-
-        <h2>Closed rooms</h2>
+        <h2>Rooms</h2>
+        <ul>
+            <!-- Rooms -->
+        </ul>
 
     </aside>
-    <div class="login-container">
-        <form class="join">
-            <input id="name" type="text" placeholder="Enter your nic">
-            <input id="room" type="text" placeholder="Enter a room">
-            <button>Join Room</button>
-        </form>
-
-        <div class="chat hidden">
-            <ul>
-                <!-- Messages from users -->
-            </ul>
-            <form class="chat">
-              <section id="chatroom">
-             <section id="feedback"></section>
-             </section>
-                <input id="message" type="text" placeholder="Type your message">
-                <button id="send_message">Send</button>
+   
+        <div class="login-container">
+            <form class="join">
+                <input id="name" type="text" placeholder="Enter your nic">
+                <input id="room" type="text" placeholder="Enter a room">
+                <button>Join Room</button>
             </form>
-            <form class="chatleave">
-                <button id="leave">Leave Room</button>
-            </form>
+    
+            <div class="chat hidden">
+                <ul>
+                    <!-- Messages from users -->
+                </ul>
+                <form class="chat">
+                  <section id="chatroom">
+                 <section id="feedback"></section>
+                 </section>
+                    <input id="message" type="text" placeholder="Type your message">
+                    <button id="send_message">Send</button>
+                </form>
+                <form class="chatleave">
+                    <button id="leave">Leave Room</button>
+                </form>
+            </div>
         </div>
-    </div>
+  
+  
 </body>
   
 </html>

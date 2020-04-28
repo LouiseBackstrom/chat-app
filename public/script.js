@@ -21,6 +21,7 @@ function setupEventListeners() {
   socket.on('join success', joinChatRoom)
   socket.on('new_message', onReceivedMessage)
   socket.on('disconnect', leaveChatRoom)
+  socket.on('rooms', onGetRooms)
 }
 
 function onJoinRoom(event) {
@@ -31,12 +32,6 @@ function onJoinRoom(event) {
   const room = roomInput.value
 
   socket.emit('join room', { name, room })
-
-  const h2 = document.querySelector('h2')
-  const li = document.createElement('li')
-  li.classList.add('room-text')
-  li.innerText = `${room}`
-  h2.appendChild(li)
 }
 
 function onLeaveRoom(event) {
@@ -53,7 +48,7 @@ function onSendMessage(event) {
 }
 
 function onReceivedMessage({ name, message }) {
-  const ul = document.querySelector('ul')
+  const ul = document.querySelector('.chat ul')
   const li = document.createElement('li')
   li.innerText = `${name}: ${message}`
   ul.append(li)
@@ -70,6 +65,19 @@ function leaveChatRoom(data) {
   document.querySelector('.chat').classList.add('hidden')
   document.querySelector('.join').classList.remove('hidden')
 }
+
+function onGetRooms(rooms) {
+  console.log(rooms)
+  const ul = document.querySelector('aside ul')
+  const liElements = rooms.map(room => {
+    const li = document.createElement('li')
+    li.innerText = room
+    return li
+  })
+  ul.innerText = ""
+  ul.append(...liElements)
+}
+
 
 /*//buttons and inputs
 var message = $("#message")
