@@ -42,18 +42,15 @@ io.on('connection', (socket) => {
         // Broadcast message to all clients in the room
         io.to(data.room).emit('new_message', { name: data.name, message })
     })
-    /*    //Listen on typing
+    //Listen on typing
     socket.on('typing', (data) => {
     socket.broadcast.emit('typing', {name: data.name, message})
-    })*/
     })
-    
-    socket.on('disconnect', () => {
+    })
+
+    socket.on('disconnect', (data) => {
         console.log('User disconnected', socket.id)
-      
-        //Delete info about user
-        delete users[socket.id]
-              
+        
         //Broadcast all rooms to all clients
         io.emit('rooms', getAllRooms())
         })
