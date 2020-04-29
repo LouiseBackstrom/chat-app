@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
         if(password === data.password)
         console.log("Password is correct, join chat room: ")
         else {
-            console.log("Password is incorrect, sorry, you are welcome to create your own private chat")
+            console.log("Password is incorrect, sorry, you are welcome to create your own private room")
         }
       }
     }
