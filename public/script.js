@@ -109,3 +109,12 @@ var feedback = $("#feedback")
 	socket.on('typing', (data) => {
 		feedback.html("<p><i>" + data.name + " is typing a message..." + "</i></p>")
 	})*/
+function usePassword() {
+  let checkBox = document.querySelector('#checkbox')
+  let input = document.querySelector('#password')
+  if (checkBox.checked == true) {
+    input.classList.remove('hidden')
+  } else {
+    input.classList.add('hidden')
+  }
+}
