@@ -23,8 +23,7 @@ io.on('connection', (socket) => {
             //Save room
             //Save name
             //Save password
-            
-
+    
    if (rooms.password){
        prompt("Please enter password:");{
         if(password === data.password)
@@ -43,7 +42,9 @@ io.on('connection', (socket) => {
             
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
+            io.to(data.password).emit('password success', 'success')
             console.log('joined room: ', socket.id)
+            console.log('password: ', data.password)
           
 
             // Broadcast message to all clients in the room

@@ -129,4 +129,5 @@ function usePassword() {
   } else {
     input.classList.add('hidden')
   }
+  const password = document.createElement('password')
 }
