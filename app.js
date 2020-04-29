@@ -20,6 +20,7 @@ io.on('connection', (socket) => {
         socket.join(data.room, () => {
             //Save name
             userData[socket.id] = {name: data.name}
+            userData[password.id] = {password: data.password} 
 
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')

@@ -112,6 +112,7 @@ var feedback = $("#feedback")
 function usePassword() {
   let checkBox = document.querySelector('#checkbox')
   let input = document.querySelector('#password')
+  let showPassword = document.querySelector('#show')
   if (checkBox.checked == true) {
     input.classList.remove('hidden')
   } else {
