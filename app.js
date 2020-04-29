@@ -8,6 +8,7 @@ const server = http.createServer(app)
 const io = socketIO(server)
 const userData = {}
 const rooms = {}
+const password = ""
 
 app.use(express.static('public'))
 
@@ -22,9 +23,17 @@ io.on('connection', (socket) => {
             //Save room
             //Save name
             //Save password
+            
 
-            // testa om rummet finns if (rooms[data.room] === undefined)
-            // finns rummet joinar man 
+   if (rooms.password){
+       prompt("Please enter password:");{
+        if(password === data.password)
+        console.log("Password is correct, join chat room: ")
+        else {
+            console.log("Password is incorrect, sorry, you are welcome to create your own private chat")
+        }
+      }
+    }
             // innan man får joina testa lösenord
             // rooms[data.room].password === data.password
             userData[socket.id] = {name: data.name, room: data.room}
