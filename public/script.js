@@ -5,12 +5,13 @@ window.addEventListener('load', () => {
 })
 
 function setupEventListeners() {
-  // Join on submit
-  const joinChat = document.querySelector('form.nic-name')
-  joinChat.addEventListener('submit', onJoinRoom)
+  // To Lobby on submit
+  const joinLobby = document.querySelector('form.nic-name')
+  joinLobby.addEventListener('submit', onJoinLobby)
 
-  const join = document.querySelector('form.join')
-  join.addEventListener('submit', joinRoom)
+  // Join room on submit
+  const joinRoom = document.querySelector('form.join')
+  joinRoom.addEventListener('submit', onJoinRoom)
 
   // Send message on submit
   const messageChat = document.querySelector('.chat form')
@@ -26,23 +27,29 @@ function setupEventListeners() {
   socket.on('rooms', onGetRooms)
 }
 
-function onJoinRoom(event) {
+function onJoinLobby(event) {
   event.preventDefault()
   const [nameInput, roomInput, passwordInput] = document.querySelectorAll(
     '.join input'
   )
 
   const name = nameInput.value
-
+  const welcome = "Welcome to the Lobby "
+  const h2 = document.createElement('h2')
+  
   document.querySelector('.join-lobby').classList.add('hidden')
   document.querySelector('.aside').classList.remove('hidden')
   document.querySelector('.join-room').classList.remove('hidden')
+
+  h2.innerText = `${welcome} ${name}!`
+  message.appendChild(h2)
+ 
   socket.emit('rooms', { name })
 }
 
-function joinRoom(event) {
+function onJoinRoom(event) {
   event.preventDefault()
-  const [nameInput] = document.querySelectorAll('.join input')
+  const [nameInput] = document.querySelectorAll('.join-lobby input')
   const [roomInput] = document.querySelectorAll('.join-room input')
   const room = roomInput.value
   const password = passwordInput.value
