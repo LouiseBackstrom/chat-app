@@ -9,6 +9,9 @@ function setupEventListeners() {
   const joinChat = document.querySelector('form.nic-name')
   joinChat.addEventListener('submit', onJoinRoom)
 
+  const join = document.querySelector('form.join')
+  join.addEventListener('submit', joinRoom)
+
   // Send message on submit
   const messageChat = document.querySelector('.chat form')
   messageChat.addEventListener('submit', onSendMessage)
@@ -20,7 +23,6 @@ function setupEventListeners() {
   // Socket io events
   socket.on('join success', joinChatRoom)
   socket.on('new_message', onReceivedMessage)
-  socket.on('disconnect', leaveChatRoom)
   socket.on('rooms', onGetRooms)
 }
 
@@ -31,6 +33,17 @@ function onJoinRoom(event) {
   )
 
   const name = nameInput.value
+
+  document.querySelector('.join-lobby').classList.add('hidden')
+  document.querySelector('.aside').classList.remove('hidden')
+  document.querySelector('.join-room').classList.remove('hidden')
+  socket.emit('rooms', { name })
+}
+
+function joinRoom(event) {
+  event.preventDefault()
+  const [nameInput] = document.querySelectorAll('.join input')
+  const [roomInput] = document.querySelectorAll('.join-room input')
   const room = roomInput.value
   const password = passwordInput.value
 
@@ -39,7 +52,6 @@ function onJoinRoom(event) {
 
 function onLeaveRoom(event) {
   event.preventDefault()
-  socket.emit('disconnect')
   location.reload()
 }
 
@@ -59,14 +71,8 @@ function onReceivedMessage({ name, message }) {
 
 function joinChatRoom(data) {
   console.log(data)
-  document.querySelector('.join').classList.add('hidden')
+  document.querySelector('.join-room').classList.add('hidden')
   document.querySelector('.chat').classList.remove('hidden')
-}
-
-function leaveChatRoom(data) {
-  console.log(data)
-  document.querySelector('.chat').classList.add('hidden')
-  document.querySelector('.join').classList.remove('hidden')
 }
 
 function onGetRooms(rooms) {
