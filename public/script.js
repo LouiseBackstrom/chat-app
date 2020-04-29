@@ -29,10 +29,10 @@ function setupEventListeners() {
 
 function onJoinLobby(event) {
   event.preventDefault()
-  const [nameInput, roomInput, passwordInput] = document.querySelectorAll(
-    '.join input'
+  const [nameInput] = document.querySelectorAll(
+    '.join-lobby input'
   )
-
+  const message = document.querySelector('.welcome-lobby')
   const name = nameInput.value
   const welcome = "Welcome to the Lobby "
   const h2 = document.createElement('h2')
@@ -50,8 +50,10 @@ function onJoinLobby(event) {
 function onJoinRoom(event) {
   event.preventDefault()
   const [nameInput] = document.querySelectorAll('.join-lobby input')
-  const [roomInput] = document.querySelectorAll('.join-room input')
+  const [roomInput,passwordInput] = document.querySelectorAll('.join input')
+ 
   const room = roomInput.value
+  const name = nameInput.value
   //const password = passwordInput.value
 
   socket.emit('join room', { name, room, password })
