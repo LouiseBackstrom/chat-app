@@ -26,7 +26,10 @@
             <input id="room" type="text" placeholder="Enter a room">
             <label for="checkbox">Use password?</label>
             <input type="checkbox" name="checkbox" id="checkbox">
+             <label for="password">Show password</label>
+                         <input type="checkbox" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'">
             <input id="password" class="password" type="password" placeholder="enter the password">
+           
             <button>Join Room</button>
         </form>
 
