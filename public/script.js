@@ -26,19 +26,22 @@ function setupEventListeners() {
 
 function onJoinRoom(event) {
   event.preventDefault()
-  const [nameInput, roomInput] = document.querySelectorAll('.join input')
+  const [nameInput, roomInput, passwordInput] = document.querySelectorAll(
+    '.join input'
+  )
 
   const name = nameInput.value
   const room = roomInput.value
+  const password = passwordInput.value
 
-  socket.emit('join room', { name, room })
+  socket.emit('join room', { name, room, password })
 }
 
 function onLeaveRoom(event) {
   event.preventDefault()
   socket.emit('disconnect')
   location.reload()
-  }
+}
 
 function onSendMessage(event) {
   event.preventDefault()
@@ -69,15 +72,14 @@ function leaveChatRoom(data) {
 function onGetRooms(rooms) {
   console.log(rooms)
   const ul = document.querySelector('aside ul')
-  const liElements = rooms.map(room => {
+  const liElements = rooms.map((room) => {
     const li = document.createElement('li')
     li.innerText = room
     return li
   })
-  ul.innerText = ""
+  ul.innerText = ''
   ul.append(...liElements)
 }
-
 
 /*//buttons and inputs
 var message = $("#message")

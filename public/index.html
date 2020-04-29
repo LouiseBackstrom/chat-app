@@ -19,32 +19,33 @@
         </ul>
 
     </aside>
-   
-        <div class="login-container">
-            <form class="join">
-                <input id="name" type="text" placeholder="Enter your nic">
-                <input id="room" type="text" placeholder="Enter a room">
-                <button>Join Room</button>
+
+    <div class="login-container">
+        <form class="join">
+            <input id="name" type="text" placeholder="Enter your nic">
+            <input id="room" type="text" placeholder="Enter a room">
+            <input id="password" class="password" type="password" placeholder="enter the password">
+            <button>Join Room</button>
+        </form>
+
+        <div class="chat hidden">
+            <ul>
+                <!-- Messages from users -->
+            </ul>
+            <form class="chat">
+                <section id="chatroom">
+                    <section id="feedback"></section>
+                </section>
+                <input id="message" type="text" placeholder="Type your message">
+                <button id="send_message">Send</button>
             </form>
-    
-            <div class="chat hidden">
-                <ul>
-                    <!-- Messages from users -->
-                </ul>
-                <form class="chat">
-                  <section id="chatroom">
-                 <section id="feedback"></section>
-                 </section>
-                    <input id="message" type="text" placeholder="Type your message">
-                    <button id="send_message">Send</button>
-                </form>
-                <form class="chatleave">
-                    <button id="leave">Leave Room</button>
-                </form>
-            </div>
+            <form class="chatleave">
+                <button id="leave">Leave Room</button>
+            </form>
         </div>
-  
-  
+    </div>
+
+
 </body>
-  
+
 </html>
