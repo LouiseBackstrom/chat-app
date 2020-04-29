@@ -52,7 +52,7 @@ function onJoinRoom(event) {
   const [nameInput] = document.querySelectorAll('.join-lobby input')
   const [roomInput] = document.querySelectorAll('.join-room input')
   const room = roomInput.value
-  const password = passwordInput.value
+  //const password = passwordInput.value
 
   socket.emit('join room', { name, room, password })
 }
