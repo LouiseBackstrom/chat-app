@@ -9,6 +9,9 @@ function setupEventListeners() {
   const joinChat = document.querySelector('form.nic-name')
   joinChat.addEventListener('submit', onJoinRoom)
 
+  const join = document.querySelector('form.join')
+  join.addEventListener('submit', joinRoom)
+
   // Send message on submit
   const messageChat = document.querySelector('.chat form')
   messageChat.addEventListener('submit', onSendMessage)
