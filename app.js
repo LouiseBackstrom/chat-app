@@ -7,6 +7,7 @@ const app = express()
 const server = http.createServer(app)
 const io = socketIO(server)
 const userData = {}
+const rooms = {}
 
 app.use(express.static('public'))
 
@@ -21,9 +22,16 @@ io.on('connection', (socket) => {
             //Save room
             //Save name
             //Save password
-            userData[socket.id] = {name: data.name}
-            // userData[password.id] = {password: data.password} 
 
+            // testa om rummet finns if (rooms[data.room] === undefined)
+            // finns rummet joinar man 
+            // innan man får joina testa lösenord
+            // rooms[data.room].password === data.password
+            userData[socket.id] = {name: data.name, room: data.room}
+            // annars skapa rummet
+            rooms[data.room] = {password: data.password}
+         
+            
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
             console.log('joined room: ', socket.id)
