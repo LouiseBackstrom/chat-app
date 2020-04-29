@@ -5,12 +5,13 @@ window.addEventListener('load', () => {
 })
 
 function setupEventListeners() {
-  // Join on submit
-  const joinChat = document.querySelector('form.nic-name')
-  joinChat.addEventListener('submit', onJoinRoom)
+  // To Lobby on submit
+  const joinLobby = document.querySelector('form.nic-name')
+  joinLobby.addEventListener('submit', onJoinLobby)
 
-  const join = document.querySelector('form.join')
-  join.addEventListener('submit', joinRoom)
+  // Join room on submit
+  const joinRoom = document.querySelector('form.join')
+  joinRoom.addEventListener('submit', onJoinRoom)
 
   // Send message on submit
   const messageChat = document.querySelector('.chat form')
