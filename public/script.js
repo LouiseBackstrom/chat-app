@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
 function setupEventListeners() {
   // Join on submit
-  const joinChat = document.querySelector('form.join')
+  const joinChat = document.querySelector('form.nic-name')
   joinChat.addEventListener('submit', onJoinRoom)
 
   // Send message on submit
@@ -14,7 +14,7 @@ function setupEventListeners() {
   messageChat.addEventListener('submit', onSendMessage)
 
   // Leave chat on submit
-  const leaveChat = document.querySelector('.chatleave')
+  const leaveChat = document.querySelector('.chat-leave')
   leaveChat.addEventListener('submit', onLeaveRoom)
 
   // Socket io events
