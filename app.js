@@ -18,13 +18,16 @@ io.on('connection', (socket) => {
 
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
+            //Save room
             //Save name
+            //Save password
             userData[socket.id] = {name: data.name}
-            userData[password.id] = {password: data.password} 
+            // userData[password.id] = {password: data.password} 
 
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
             console.log('joined room: ', socket.id)
+          
 
             // Broadcast message to all clients in the room
             io.to(data.room).emit(

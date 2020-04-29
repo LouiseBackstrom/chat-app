@@ -27,9 +27,9 @@
             <label for="checkbox">Use password?</label>
             <input type="checkbox" name="checkbox" id="checkbox" onclick="usePassword()">
             <input id="password" class="password hidden" type="password" placeholder="enter the password">
-              <input type="checkbox" id="show" 
+              <input type="checkbox" id="showPassword" 
                 onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'">
-                    <label name="show" for="show">Show password</label>
+                    <label name="showPassword" id="password" for="showPassword">Show password</label>
 
             <button>Join Room</button>
         </form>
