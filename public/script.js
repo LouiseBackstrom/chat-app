@@ -25,6 +25,7 @@ function setupEventListeners() {
   socket.on('join success', joinChatRoom)
   socket.on('new_message', onReceivedMessage)
   socket.on('rooms', onGetRooms)
+  socket.on('password', joinChatRoom)
 }
 
 function onJoinLobby(event) {
@@ -49,8 +50,12 @@ function onJoinRoom(event) {
   event.preventDefault()
   const [nameInput] = document.querySelectorAll('.join-lobby input')
   const [roomInput] = document.querySelectorAll('.join-room input')
+  const [passwordInput] = document.querySelectorAll('.password')
   const room = roomInput.value
   const name = nameInput.value
+  const password = passwordInput.value
+  console.log(password)
+ 
 
   socket.emit('join room', { name, room, password })
 }
@@ -123,11 +128,9 @@ var feedback = $("#feedback")
 function usePassword() {
   let checkBox = document.querySelector('#checkbox')
   let input = document.querySelector('#password')
-  let showPassword = document.querySelector('#show')
   if (checkBox.checked == true) {
     input.classList.remove('hidden')
   } else {
     input.classList.add('hidden')
   }
-  const password = document.createElement('password')
 }
