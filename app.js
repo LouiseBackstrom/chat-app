@@ -7,14 +7,11 @@ const app = express()
 const server = http.createServer(app)
 const io = socketIO(server)
 const userData = {}
-const rooms = {}
+const rooms = []
 const password = ""
 
 app.use(express.static('public'))
 
-
-let rooms = [
-]
 
 //Client connection
 io.on('connection', (socket) => {
@@ -22,25 +19,33 @@ io.on('connection', (socket) => {
      //Broadcast all rooms to all clients
     io.emit('rooms', getAllRooms())
 
+
+    socket.on('create room', (data) => {
+        socket.join(data.room, () => {
+            rooms.push({ 
+                name: data.room, 
+                password: data.password 
+            })
+        })
+    })
+
     socket.on('join room', (data) => {
 
         // Finns rummet?
-        // loopa igenom rooms
+        let index = rooms.findIndex((room) => {
+            return room.name == data.room.name
+        })
+       
         // Finns rum, jämför lösenord, om ej, skapa nytt rum
+        if (data.password !== rooms[index].password){
+          
+         }
 
         socket.join(data.room, () => {
             // save data on join room
     
             //if room has password on join
-   if (rooms.password){
-       prompt("Please enter password:");{
-        if(password === data.password)
-        console.log("Password is correct, join chat room: ")
-        else {
-            console.log("Password is incorrect, sorry, you are welcome to create your own private room")
-        }
-      }
-    }
+ 
             userData[socket.id] = {name: data.name, room: data.room, password: data.password}
             // if room has no password create room
             //rooms[data.room] = {password: data.password}
@@ -48,11 +53,6 @@ io.on('connection', (socket) => {
          
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
-            io.to(data.password).emit('password success', 'success')
-            console.log('joined room: ', socket.id)
-            console.log('password: ', data.password)
-          
-            // Broadcast message to all clients in the room
             io.to(data.room).emit(
                 'new_message',
                 {
@@ -60,6 +60,8 @@ io.on('connection', (socket) => {
                     message: `has joined the room!`
                 }
             )
+            // Broadcast message to all clients in the room
+           
 
             //Broadcast all rooms to all clients
             io.emit('rooms', getAllRooms())
