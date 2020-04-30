@@ -7,6 +7,8 @@ const app = express()
 const server = http.createServer(app)
 const io = socketIO(server)
 const userData = {}
+const rooms = {}
+const password = ""
 
 app.use(express.static('public'))
 
@@ -18,13 +20,29 @@ io.on('connection', (socket) => {
 
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
-            //Save name
-            userData[socket.id] = {name: data.name}
-
+            // save data on join room
+    
+            //if room has password on join
+   if (rooms.password){
+       prompt("Please enter password:");{
+        if(password === data.password)
+        console.log("Password is correct, join chat room: ")
+        else {
+            console.log("Password is incorrect, sorry, you are welcome to create your own private room")
+        }
+      }
+    }
+            userData[socket.id] = {name: data.name, room: data.room, password: data.password}
+            // if room has no password create room
+            //rooms[data.room] = {password: data.password}
+            
+         
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
+            io.to(data.password).emit('password success', 'success')
             console.log('joined room: ', socket.id)
-
+            console.log('password: ', data.password)
+          
             // Broadcast message to all clients in the room
             io.to(data.room).emit(
                 'new_message',
