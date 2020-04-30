@@ -14,10 +14,10 @@ https://github.com/emmamariagaby/chat-app
 
 ## What to install
 
-npm install express
-npm install nodemon
-npm install socket.io
-npm install ejs
+```npm install express```
+```npm install nodemon```
+```npm install socket.io```
+```npm install ejs```
 
 ## How to run the program
 
@@ -25,16 +25,18 @@ npm run dev
 
 ## Krav för godkänt:
 
-1.En fungerade chatt där användaren kan välja ett eget visningsnamn
+1. En fungerade chatt där användaren kan välja ett eget visningsnamn - ✓
 
-2.Det ska gå att skapa och joina ett rum med eller utan lösenord
+2. Det ska gå att skapa och joina ett rum utan lösenord - ✓
 
-3.Tomma rum ska automatiskt försvinna
+3. Det ska gå att skapa och joina ett rum med lösenord
 
-4.Samtliga rum skall vara synligt i en lista där låsta & öppna rum är tydligt separerade
+3. Tomma rum ska automatiskt försvinna - ✓
 
-5.Git & GitHub har använts - ✓
+4. Samtliga rum skall vara synligt i en lista där låsta & öppna rum är tydligt separerade
 
-6.Projektmappen innehåller en README.md fil (läs ovan för mer info) - ✓
+5. Git & GitHub har använts - ✓
 
-7.Uppgiften lämnas in i tid!
+6. Projektmappen innehåller en README.md fil (läs ovan för mer info) - ✓
+
+7. Uppgiften lämnas in i tid!- ✓

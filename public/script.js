@@ -13,7 +13,7 @@ function setupEventListeners() {
   const joinRoom = document.querySelector('form.join')
   joinRoom.addEventListener('submit', onJoinRoom)
 
-  // Send message on submit
+  // Send messages on submit
   const messageChat = document.querySelector('.chat form')
   messageChat.addEventListener('submit', onSendMessage)
 
@@ -28,6 +28,7 @@ function setupEventListeners() {
   socket.on('password', joinChatRoom)
 }
 
+// Enter nic and go to Lobby
 function onJoinLobby(event) {
   event.preventDefault()
   const [nameInput] = document.querySelectorAll('.join-lobby input')
@@ -46,6 +47,7 @@ function onJoinLobby(event) {
   socket.emit('rooms', { name })
 }
 
+// Create room
 function onJoinRoom(event) {
   event.preventDefault()
   const [nameInput] = document.querySelectorAll('.join-lobby input')
@@ -54,18 +56,17 @@ function onJoinRoom(event) {
   const room = roomInput.value
   const name = nameInput.value
   const password = passwordInput.value
-  console.log(name)
-  console.log(room)
-  console.log(password)
 
   socket.emit('join room', { name, room, password })
 }
 
+// Leave Chat
 function onLeaveRoom(event) {
   event.preventDefault()
   location.reload()
 }
 
+// Send messages in the room
 function onSendMessage(event) {
   event.preventDefault()
   const input = document.querySelector('.chat form input')
@@ -73,6 +74,7 @@ function onSendMessage(event) {
   input.value = ''
 }
 
+// Receive messages un the room
 function onReceivedMessage({ name, message }) {
   const ul = document.querySelector('.chat ul')
   const li = document.createElement('li')
@@ -80,12 +82,14 @@ function onReceivedMessage({ name, message }) {
   ul.append(li)
 }
 
+// Remove hidden from chatroom
 function joinChatRoom(data) {
   console.log(data)
   document.querySelector('.join-room').classList.add('hidden')
   document.querySelector('.chat').classList.remove('hidden')
 }
 
+// Get all rooms
 function onGetRooms(rooms) {
   console.log(rooms)
   const ul = document.querySelector('aside ul')
@@ -98,34 +102,7 @@ function onGetRooms(rooms) {
   ul.append(...liElements)
 }
 
-/*//buttons and inputs
-var message = $("#message")
-var name = $("#name")
-var send_message = $("#send_message")
-var chatroom = $("#chatroom")
-var feedback = $("#feedback")
-
-	//Emit message
-	send_message.click(function(){
-		socket.emit('new_message', {message : message.val()})
-	})
-
-	//Listen on new_message
-	socket.on("new_message", (data) => {
-		feedback.html('');
-		message.val('');
-		chatroom.append("<p class='message'>" + data.name + ": " + data.message + "</p>")
-	})
-
-	//Emit typing
-	message.bind("keypress", () => {
-		socket.emit('typing')
-	})
-
-	//Listen on typing
-	socket.on('typing', (data) => {
-		feedback.html("<p><i>" + data.name + " is typing a message..." + "</i></p>")
-	})*/
+// Password
 function usePassword() {
   let checkBox = document.querySelector('#checkbox')
   let input = document.querySelector('#password')
