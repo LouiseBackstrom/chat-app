@@ -20,11 +20,10 @@ io.on('connection', (socket) => {
 
     socket.on('join room', (data) => {
         socket.join(data.room, () => {
-            //Save room
-            //Save name
-            //Save password
+            // save data on join room
     
-   if (rooms.password){
+            //if room has password on join
+   if (rooms[data.room].password === data.password){
        prompt("Please enter password:");{
         if(password === data.password)
         console.log("Password is correct, join chat room: ")
@@ -33,10 +32,8 @@ io.on('connection', (socket) => {
         }
       }
     }
-            // innan man får joina testa lösenord
-            // rooms[data.room].password === data.password
             userData[socket.id] = {name: data.name, room: data.room}
-            // annars skapa rummet
+            // if room has no password create room
             rooms[data.room] = {password: data.password}
          
             
