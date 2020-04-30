@@ -71,9 +71,10 @@ button {
 }
 
 .chat ul {
-  margin: 5rem;
+  margin: 5rem 0;
   padding: 0;
   flex: 1;
+  width: 100%;
 }
 
 .chat li {
@@ -95,7 +96,7 @@ aside {
   background: rgb(12, 129, 138);
   display: flex;
   justify-content: center;
-  width: 15rem;
+  width: 10rem;
   align-items: center;
   flex-direction: column;
 }
@@ -126,4 +127,8 @@ h2 {
   font-family: arial;
   color: white;
   margin-bottom: 4rem;
+}
+
+label {
+  color: white;
 }
