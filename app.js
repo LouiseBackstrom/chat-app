@@ -12,13 +12,22 @@ const password = ""
 
 app.use(express.static('public'))
 
+
+let rooms = [
+]
+
 //Client connection
 io.on('connection', (socket) => {
     console.log('User connected: ', socket.id)
      //Broadcast all rooms to all clients
-     io.emit('rooms', getAllRooms())
+    io.emit('rooms', getAllRooms())
 
     socket.on('join room', (data) => {
+
+        // Finns rummet?
+        // loopa igenom rooms
+        // Finns rum, jämför lösenord, om ej, skapa nytt rum
+
         socket.join(data.room, () => {
             // save data on join room
     
