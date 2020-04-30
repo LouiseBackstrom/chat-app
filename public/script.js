@@ -49,10 +49,14 @@ function onJoinLobby(event) {
 function onJoinRoom(event) {
   event.preventDefault()
   const [nameInput] = document.querySelectorAll('.join-lobby input')
-  const [roomInput,passwordInput] = document.querySelectorAll('.join input')
+  const [roomInput] = document.querySelectorAll('.join input')
+  const [passwordInput] = document.querySelectorAll('.password')
   const room = roomInput.value
   const name = nameInput.value
   const password = passwordInput.value
+  console.log(name)
+  console.log(room)
+  console.log(password)
 
   socket.emit('join room', { name, room, password })
 }
