@@ -31,6 +31,8 @@ io.on('connection', (socket) => {
 
     socket.on('join room', (data) => {
 
+        
+
         // Finns rummet?
         let index = rooms.findIndex((room) => {
             return room.name == data.room.name
@@ -38,8 +40,9 @@ io.on('connection', (socket) => {
        
         // Finns rum, jämför lösenord, om ej, skapa nytt rum
         if (data.password !== rooms[index].password){
-          
-         }
+            // Joina inte!
+            return
+        }
 
         socket.join(data.room, () => {
             // save data on join room
