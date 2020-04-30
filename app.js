@@ -36,14 +36,12 @@ io.on('connection', (socket) => {
             // if room has no password create room
             rooms[data.room] = {password: data.password}
          
-            
             // Respond that join was a success
             io.to(socket.id).emit('join success', 'success')
             io.to(data.password).emit('password success', 'success')
             console.log('joined room: ', socket.id)
             console.log('password: ', data.password)
           
-
             // Broadcast message to all clients in the room
             io.to(data.room).emit(
                 'new_message',
