@@ -91,7 +91,7 @@ function joinChatRoom(data) {
 
 // Get all rooms
 function onGetRooms(rooms) {
-  console.log(rooms)
+  //console.log(rooms)
   const ul = document.querySelector('aside ul')
   const liElements = rooms.map((room) => {
     const li = document.createElement('li')
