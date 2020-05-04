@@ -1,12 +1,6 @@
 # Chat-app
 
-Vi skall skapa en chatt applikation, där användare skall kunna chatta med varandra. Varje klient skall kunna skapa ett nytt rum alternativt gå in i ett befintligt rum.
-
-När ett nytt rum skapas kan ett lösenord anges, detta lösenord måste isåfall anges då en klient försöker gå med i rummet.
-
-Samtliga rum skall visas i en lista med sortering på låsta- och öppna rum (låsta rum har lösenord). En klient skall kunna gå in i ett rum genom att klicka på det i listan och är detta ett låst rum måste hen ange rätt lösenord för att komma in.
-
-Ett rum skall automatiskt försvinna då det inte längre finns några klienter kvar i rummet.
+This project is a chat application who handles chatting clients. Every client can create a new room and join theirs and others. When client creates a room they can choose to give the room a password, a room with a password can only be join by writing correct password. All client rooms are listed in a sidebar where the clients can see what rooms are open, the clients can join room by a click, and rooms disappears when they're empty from clients.
 
 ## Repo
 
