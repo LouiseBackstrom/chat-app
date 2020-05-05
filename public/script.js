@@ -26,6 +26,7 @@ function setupEventListeners() {
   socket.on('new_message', onReceivedMessage)
   socket.on('rooms', onGetRooms)
   socket.on('password', joinChatRoom)
+  socket.on('wrong password', () => alert("Fel lösenord"))
 }
 
 // Enter nic and go to Lobby
@@ -64,6 +65,7 @@ function onJoinRoom(event) {
 function onLeaveRoom(event) {
   event.preventDefault()
   location.reload()
+  socket.emit('leave room')
 }
 
 // Send messages in the room
